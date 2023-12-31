@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../json"
+		},
+		{
+			"path": "../node_modules"
+		},
+		{
+			"path": "../vite-project"
+		}
+	],
+	"settings": {}
+}

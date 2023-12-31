@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body tabindex="0" onkeydown="
+    handleKeydown(event.key);
+  ">
+    <div class="title">
+      <div class="title-text">iOS Calculator Clone</div>
+      <a href="https://www.github.com" target="_blank">
+        <div class="img">
+          <div class="tooltip">GitHub Repository - iOS Calculator Clone</div>
+        </div>
+      </a>
+    </div>
+    <div class="calculator-outer">
+      <div class="calculator-middle">
+        <div class="calculator-inner">
+          <div class="top-div">
+            <div class="copy-div"> 
+              <button class="copy-btn" onclick="
+                navigator.clipboard.writeText(calculationText.innerHTML).then(() => {
+                  console.log('Content copied to clipboard');
+                  /* Resolved - text copied to clipboard successfully */
+                },() => {
+                  console.error('Failed to copy');
+                  /* Rejected - text failed to copy to the clipboard */
+                });
+                ">
+                COPY 
+              <img src="images/copy-text.png" class="copy-img">
+              </button>
+            </div>
+            <div class="history-div">
+              <button class="history-btn" onclick="     
+              console.log('active');   
+              console.log(tooltip.classList);
+                if (tooltip.classList.contains('history-tooltip-toggled')) {
+                    tooltip.classList.remove('history-tooltip-toggled');
+                  } else if (calcHistory == '') {
+                    tooltip.classList.add('history-tooltip-toggled');
+                    tooltip.innerHTML = 'No calculation history. Please enter a calculation.';
+                  } else {
+                    tooltip.classList.add('history-tooltip-toggled');
+                    tooltip.innerHTML = tooltip.innerHTML.trimEnd();
+                    tooltip.scrollTop = tooltip.scrollHeight;
+                    console.log('yrr');
+                    document.getElementById('history-clear-button').addEventListener('click', function() {
+                    tooltip.innerHTML = 'No calculation history. Please enter a calculation.';
+                    calcHistory = ['']; 
+                    });
+                  }
+                  ">
+                <img src="images/history.png">
+              </button> 
+              <div class="history-tooltip">
+              </div>
+            </div>
+          </div>
+          <div class="bottom-div">
+            <div class="js-calculation calculation-text">0</div>
+          </div>
+          <div class="container">
+            <div class="number-container">
+              <div class="row-1">  
+                <button class="clear" onclick="
+                  clearDisplay();
+                ">AC</button>
+
+                <button onclick="
+                  negativeNumber();
+                ">+/-</button>
+
+                <button onclick="
+                  convertToPercent();
+                ">%</button>
+              </div>
+
+              <div class="row-2">
+                <button onclick="
+                  updateNumber(7);
+                ">7</button>
+
+                <button onclick="
+                  updateNumber(8);
+                ">8</button>
+
+                <button onclick="
+                  updateNumber(9);
+                ">9</button>
+              </div>
+              
+              <div class="row-3">
+                <button onclick="
+                  updateNumber(4)
+                ">4</button>
+
+                <button onclick="
+                  updateNumber(5);
+                ">5</button>
+
+                <button onclick="
+                  updateNumber(6);
+                ">6</button>
+              </div>
+
+              <div class="row-4">
+                <button onclick="
+                  updateNumber(1);
+                ">1</button>
+
+                <button onclick="
+                  updateNumber(2);
+                ">2</button>
+
+                <button onclick="
+                  updateNumber(3);
+                ">3</button>
+              </div>
+
+              <div class="row-5">
+                <button class="zero-btn" onclick="
+                  if (calculation) {
+                    updateNumber(0);
+                  } 
+                ">0</button>
+
+                <button class="decimal-btn" onclick="
+                  addDecimal();
+                ">.</button>
+              </div>
+            </div>
+
+            <div class="operators">      
+              <button class="js-divide-button" onclick="
+                updateOperator(' / ');
+                toggleButton('divide');
+              ">&divide;</button>
+
+              <button class="js-multiply-button" onclick="
+                updateOperator(' * ');
+                toggleButton('multiply');
+              ">&times;</button>      
+              
+              <button class="js-minus-button" onclick="
+                updateOperator(' - ');
+                toggleButton('minus');
+              ">-</button>
+
+                <button class="js-add-button" onclick="
+                  updateOperator(' + ');
+                  toggleButton('add');
+                ">+</button>
+
+              <button onclick="
+                calculate();
+              ">=</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='node_modules/decimal.js/decimal.js'></script>
+
+    <script type="module">
+      import Decimal from './node_modules/decimal.js/decimal.mjs';
+    </script>
+
+    <script src="main.js"></script>
+  </body>
+</html>
