@@ -8,7 +8,6 @@ const tooltip = document.querySelector('.history-tooltip');
 
 
 function toggleHistory () {
-  console.log(tooltip.classList.contains('history-tooltip-toggled'));
   if (tooltip.classList.contains('history-tooltip-toggled')) {
     tooltip.classList.remove('history-tooltip-toggled');
   }
@@ -27,7 +26,6 @@ updateDisplay(); // Call updateDisplay initially
 function updateNumber(number) {
   turnOffButton();
   toggleHistory();
-  console.log(numbers[numbers.length - 1]);
   if (numbers[numbers.length - 1].length < 7) {
     calculationText.style.fontSize = '64px';
     calculationText.style.top = '90px';
@@ -63,8 +61,6 @@ function updateOperator(operator) {
     if (operators[operators.length - 1] === operator) {
       operators.splice(operators.length - 1, 1);
       numbers.splice(numbers.length - 1, 1);
-      console.log(numbers, 'nummms')
-      console.log(operators);
       updateCalculation();
     } else {
       operators[operators.length - 1] = operator;
@@ -100,7 +96,7 @@ function updateOperator(operator) {
           calculation = firstNumber.add(product);
         } else if (operators[0] === ' - ') {
           calculation = firstNumber.minus(product);
-        } console.log('here:', numbers)
+        }
         
         if (operators[2] === ' * ' || operators[2] === ' / ') {
           numbers[3] = product;
@@ -122,7 +118,6 @@ function updateOperator(operator) {
       } else if (operators[1] === ' / ') {
         let quotient = secondNumber.dividedBy(lastNumber);
         calculation = `${numbers[0]}${operators[2]}${quotient}`;
-        console.log(numbers);
         let firstNumber = new Decimal(numbers[0]);
 
         if (operators[2] === ' + ') {
@@ -183,7 +178,6 @@ function updateOperator(operator) {
       calculationText.innerHTML = Number(product).toLocaleString('en-US');
       numbers = [String(product), ''];
       operators = [operators[1]];
-      console.log(numbers, operators);
       calculation = `${product}${operators[0]}`;
     } else if (operators[0] === ' / ') {
       let quotient = firstNumber.dividedBy(secondNumber);
@@ -218,9 +212,6 @@ function updateOperator(operator) {
 
 function calculate() {
   turnOffButton();
-  console.log(calculation);
-  console.log(numbers);
-
   const num1 = Number(numbers[0]);
   const num2 = Number(numbers[1]);
   const num3 = Number(numbers[2]);
@@ -230,7 +221,6 @@ function calculate() {
   if (calculation) {
     if (operators.length === 1) {
       if (numbers.length === 2 && numbers[1]==='') {
-        console.log('hey')
         let number = new Decimal(numbers[0]);
         if (operators[0] === ' + ') {
           calculation = Number(number.mul(2));
@@ -256,7 +246,6 @@ function calculate() {
         } else if (operators[0] === ' * ') {
           let product = firstNumber.mul(secondNumber);
           calculation = Number(product);
-          console.log(calculation);
         } else if (operators[0] === ' / ') {
           let quotient = firstNumber.dividedBy(secondNumber);
           calculation = Number(quotient);
@@ -294,15 +283,12 @@ function calculate() {
     } else return;
 
   numbers = [String(calculation)];
-  console.log(numbers);
   operators = [];
 
   if (calculation.toString() === 'Infinity' || calculation === 'NaN') {
     calculationText.innerHTML = 'Undefined';
   } else {
-    console.log('hi', calculationText.innerHTML);
     calculationText.innerHTML = Number(calculation).toLocaleString('en-US');
-    console.log(calculationText.innerHTML);
   }
 
   checkResultLength(numbers[numbers.length - 1]);
@@ -358,12 +344,10 @@ function clearDisplay() {
     calculation = '';
     numbers = [''];
     operators = [];
-    console.log('h')
     turnOffButton();
   }
 
   if (document.querySelector('.clear').innerHTML === 'C') {
-    console.log(numbers);
     if (numbers.length === 1) {
       calculation = '';
       numbers = [''];
@@ -375,7 +359,6 @@ function clearDisplay() {
     }
   } 
   document.querySelector('.js-calculation').innerHTML = 0;
-  console.log(calculation);
 
   if ((numbers.length === 2 && numbers[numbers.length - 1] === '') || calculationText.innerHTML === '0') {
     document.querySelector('.clear').innerHTML = 'AC';
