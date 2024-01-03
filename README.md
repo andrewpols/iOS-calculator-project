@@ -10,3 +10,15 @@
 ## GitHub Pages
 - [Try the calculator here!](https://andrewpols.github.io/iOS-calculator-project/)
 - NOTE: The .nojekyll file is imperative if run through GitHub pages, as jekyll will ignore the node_modules folder otherwise. If Google or any browser ignores the node_modules folder, simply turn the setting off or else the calculator will not function.
+
+## How to Use
+- Simply use the operators/numbers on screen via mouse or keyboard to input calculations.
+- Special Characters (keyboard): equals is '='; clear is 'C'; delete is 'delete'; negative sign is '_' (SHIFT + -).
+- Options to view history or copy answers are also available.
+
+## Functionality
+- The calculator works on a first-calculated first output basis.
+- This means that if something can be calculated first, **it will**.
+- For example, after typing 4 * 3 + ..., the calculator will automatically output 12 and await the next input (ie. 12 + ...).
+- This should not happen if a calculation follows the order of operations (ie. 12 + 3 * ... will await the next input).
+- If a situation occurs where repetitive multiplicity/division occurs, the calculation will continue to update (ex: 2 + 3 * 2 * --> 2 + 6 * ...).
