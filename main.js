@@ -113,6 +113,9 @@ function updateOperator(operator) {
           const answer = Number(calculation); 
           calcHistory[calcHistory.length - 1] = `${num1.toLocaleString('en-US')}${op1}${num2.toLocaleString('en-US')}${op2}${num3.toLocaleString('en-US')} = ${answer.toLocaleString('en-US')}`;
           calcHistory.push('');
+
+          numbers = [calculation.toString(), ''];
+          operators = [operators[2]];
         }
 
       } else if (operators[1] === ' / ') {
