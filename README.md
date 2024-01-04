@@ -13,7 +13,7 @@
 
 ## How to Use
 - Simply use the operators/numbers on screen via mouse or keyboard to input calculations.
-- Special Characters (keyboard): equals is '='; clear is 'C'; negative sign is '_' (SHIFT + -).
+- Special Characters (keyboard): equals is '='; clear is 'C' (SHIFT + c); negative sign is '_' (SHIFT + -).
 - Options to view history or copy answers are also available.
 
 ## Functionality
